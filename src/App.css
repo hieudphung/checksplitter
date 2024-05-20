@@ -1,3 +1,5 @@
+/* default was made before light and dark so now some dont work xd*/
+
 /* Default dark mode - Sets the background color and text color for dark mode */
 body.dark-mode {
   background-color: #0c0c0e; /* Dark background color */
@@ -22,7 +24,7 @@ body.dark-mode {
   color: #121212; /* White text color */
   border: none; /* No border */
   border-radius: 10px; /* Slightly rounded corners */
-  padding: 12px 157.5px; /* Padding inside the button */
+  padding: 4px 157.5px; /* Padding inside the button */
   cursor: pointer; /* Pointer cursor on hover */
   font-size: 18px; /* Font size */
   margin-top: 10px; /* Margin above the button */
@@ -69,8 +71,10 @@ body:not(.dark-mode) {
 
 /* Light mode main bubble - Styles for bubbles in light mode */
 .bubble:not(.dark-mode) {
-  background-color: #a1afc1; /* Dark background color for bubbles in light mode */
-  border-color: #3f3f3f; /* Light border color for bubbles in light mode */
+  background-color: #a2a7ad; /* Dark background color for bubbles in light mode */
+  border-color: #969292; /* Light border color for bubbles in light mode */
+  transition: background-color 2.5s ease; /* Smooth transition for background color change */
+  transition: border-color 2.5s ease; /* Smooth transition for background color change */
 }
 
 /* Light mode button - Styles for buttons in light mode */
@@ -96,11 +100,11 @@ body:not(.dark-mode) {
 
 /* Light mode bubble button - Styles for buttons inside bubbles in light mode */
 .bubble:not(.dark-mode) .button {
-  background-color: #909396; /* Dark background color for buttons inside bubbles */
+  background-color: #272829; /* Dark background color for buttons inside bubbles */
 }
 
 .bubble:not(.dark-mode) .button:hover {
-  background-color: #717880; /* Dark grey background color for buttons on hover */
+  background-color: #636568; /* Dark grey background color for buttons on hover */
 }
 
 /* Additional styling - Styles for dark mode toggle button */

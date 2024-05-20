@@ -27,49 +27,55 @@ const BillSplitter = () => {
 
   const handleItemChange = (index, field, event) => {
     const newItems = [...items];
-    newItems[index][field] = event.target.value;
+    newItems[index] = { ...newItems[index], [field]: event.target.value };
     setItems(newItems);
   };
 
   const handleNameClick = (itemIndex, nameIndex) => {
-    const newItems = [...items];
-    const item = newItems[itemIndex];
-    const selected = item.selected;
+    const newItems = items.map((item, idx) => {
+      if (idx === itemIndex) {
+        const selected = item.selected.includes(nameIndex)
+          ? item.selected.filter(index => index !== nameIndex)
+          : [...item.selected, nameIndex];
 
-    if (selected.includes(nameIndex)) {
-      selected.splice(selected.indexOf(nameIndex), 1);
-    } else {
-      selected.push(nameIndex);
-    }
+        const subtotal = calculateSubtotal(item.price, selected.length);
+        return { ...item, selected, subtotal };
+      }
+      return item;
+    });
 
-    item.selected = selected;
-
-    const subtotal = calculateSubtotal(itemIndex);
-    item.subtotal = subtotal;
-
-    newItems[itemIndex] = item;
     setItems(newItems);
   };
 
-  const calculateSubtotal = (itemIndex) => {
+  const handleToggleAllClick = (itemIndex) => {
     const item = items[itemIndex];
-    const numberOfSelected = item.selected.length;
-    const originalPrice = parseFloat(item.price);
-  
+    const allSelected = item.selected.length === names.length;
+
+    const selected = allSelected ? [] : names.map((_, index) => index);
+    const subtotal = calculateSubtotal(item.price, selected.length);
+
+    const newItems = items.map((item, idx) => {
+      if (idx === itemIndex) {
+        return { ...item, selected, subtotal };
+      }
+      return item;
+    });
+
+    setItems(newItems);
+  };
+
+  const calculateSubtotal = (price, numberOfSelected) => {
+    const originalPrice = parseFloat(price);
+
     if (isNaN(originalPrice) || !isFinite(originalPrice) || originalPrice === 0) {
       return '-';
     }
-  
+
     return numberOfSelected === 0 ? originalPrice : (originalPrice / numberOfSelected);
   };
-  
-  
-
 
   const handleAddName = () => {
     setNames([...names, '']);
-    const newItems = items.map(item => ({ ...item, selected: [...item.selected, false] }));
-    setItems(newItems);
     setTimeout(() => {
       inputRefs.current[inputRefs.current.length - 1].focus();
     }, 0);
@@ -80,7 +86,7 @@ const BillSplitter = () => {
     setNames(newNames);
     const newItems = items.map(item => ({
       ...item,
-      selected: item.selected.filter((_, i) => i !== index)
+      selected: item.selected.filter((_, i) => i !== index),
     }));
     setItems(newItems);
   };
@@ -134,7 +140,13 @@ const BillSplitter = () => {
 
   const calculateTotals = () => {
     const subtotals = names.map((_, nameIndex) =>
-      items.reduce((sum, item) => sum + (item.selected.includes(nameIndex) ? item.subtotal : 0), 0)
+      items.reduce((sum, item) => {
+        if (item.selected.includes(nameIndex)) {
+          const itemShare = parseFloat(item.price) / item.selected.length;
+          return sum + itemShare;
+        }
+        return sum;
+      }, 0)
     );
 
     const taxAmount = subtotals.map(subtotal => subtotal * (parseFloat(tax) / 100 || 0));
@@ -149,7 +161,7 @@ const BillSplitter = () => {
 
   return (
     <div>
-      <h2>Bill Splitter</h2>
+      <h2>Bill Splitter / Check Divider</h2>
 
       <div>
         <h3>Names</h3>
@@ -195,6 +207,7 @@ const BillSplitter = () => {
                 {names[nameIndex]}
               </button>
             ))}
+            <button onClick={() => handleToggleAllClick(itemIndex)}>Toggle All</button>
             <button onClick={() => handleRemoveItem(itemIndex)}>Remove Item</button>
           </div>
         ))}
@@ -203,6 +216,7 @@ const BillSplitter = () => {
 
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <div>
+          <h3>Tax and Tip</h3>
           <label style={{ marginRight: '10px' }}>Tax Percentage:</label>
           <input
             type="number"
@@ -210,8 +224,7 @@ const BillSplitter = () => {
             value={tax}
             onChange={e => setTax(e.target.value)}
           />
-        </div>
-        <div>
+          <div>
           <label style={{ marginRight: '10px' }}>Tip Percentage:</label>
           <input
             type="number"
@@ -219,6 +232,7 @@ const BillSplitter = () => {
             value={tip}
             onChange={e => setTip(e.target.value)}
           />
+          </div>
         </div>
       </div>
 
@@ -249,6 +263,15 @@ const BillSplitter = () => {
       <div>
         <button className="button" onClick={handleClearAll}>Clear All</button>
         <button className="button" onClick={handleExport}>Export</button>
+      </div>
+      <div>
+      <h3>Bill Splitting Calculation</h3>
+      <h4>By clicking a name for each item, the calculator automatically splits the amount per person including tax and tip.</h4>
+      <h3>Example</h3>
+      <h4>insert steps</h4>
+      <h4>insert steps</h4>
+      <h4>insert steps</h4>
+      <h4>insert steps</h4>
       </div>
     </div>
   );
