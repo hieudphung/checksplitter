@@ -1,0 +1,12 @@
+{
+  "homepage": "https://hieudphung.github.io/travelbudgetapp",
+  "dependencies": {
+    "currency.js": "^2.0.4",
+    "money": "^0.2.0",
+    "money-js": "^1.0.2"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}

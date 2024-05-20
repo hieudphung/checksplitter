@@ -1,0 +1,114 @@
+/* Default dark mode - Sets the background color and text color for dark mode */
+body.dark-mode {
+  background-color: #0c0c0e; /* Dark background color */
+  color: #2f3439; /* Light grey text color */
+}
+
+/* Container for the main bubble section - Styles for the bubble containers */
+.bubble {
+  background-color: #141416; /* Dark background color for bubbles */
+  border: 1px solid #e90808; /* Red border for bubbles */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgb(151, 149, 158); /* Subtle shadow */
+  padding: 20px; /* Padding inside bubbles */
+  margin-bottom: 20px; /* Margin below bubbles */
+  max-width: 750px; /* Maximum width for bubbles */
+  margin: 20px auto; /* Center bubbles horizontally */
+}
+
+/* Button styles - Styles for the buttons */
+.button {
+  background-color: #007bff; /* Primary blue background color */
+  color: #121212; /* White text color */
+  border: none; /* No border */
+  border-radius: 10px; /* Slightly rounded corners */
+  padding: 12px 157.5px; /* Padding inside the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 18px; /* Font size */
+  margin-top: 10px; /* Margin above the button */
+  transition: background-color 0.5s ease; /* Smooth transition for background color change */
+}
+
+.button:hover {
+  background-color: #3fa1f2; /* Lighter blue background color on hover */
+}
+
+/* Dark mode for buttons - Sets background color for buttons in dark mode */
+.dark-mode .button {
+  background-color: #15151d; /* Dark background color for buttons in dark mode */
+}
+
+/* Totals table - Styles for the table */
+table {
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Collapse table borders */
+  margin-top: 10px; /* Margin above the table */
+}
+
+th, td {
+  padding: 10px; /* Padding inside table cells */
+  border-bottom: 1px solid #222; /* Dark border below cells */
+  text-align: center; /* Center align text in table cells */
+}
+
+/* Dark mode for totals table text color - Sets text color for table in dark mode */
+.dark-mode table {
+  color: #1a1f25; /* Light blue text color for table in dark mode */
+}
+
+/* Dark mode table line color - Sets border color for table cells in dark mode */
+.dark-mode th, .dark-mode td {
+  border-color: #121212; /* Very dark border color */
+}
+
+/* Light mode - Sets background color and text color for light mode */
+body:not(.dark-mode) {
+  background-color: #808c9b; /* Light grey background color */
+  color: #282828; /* Black text color */
+}
+
+/* Light mode main bubble - Styles for bubbles in light mode */
+.bubble:not(.dark-mode) {
+  background-color: #a1afc1; /* Dark background color for bubbles in light mode */
+  border-color: #3f3f3f; /* Light border color for bubbles in light mode */
+}
+
+/* Light mode button - Styles for buttons in light mode */
+.button:not(.dark-mode) {
+  background-color: #1578e9; /* Medium blue background color */
+  color: #918b8b; /* Light grey text color */
+}
+
+.button:not(.dark-mode):hover {
+  background-color: #0d3f75; /* Lighter blue background color on hover */
+}
+
+/* Light mode section - Styles for sections in light mode */
+.bubble:not(.dark-mode) .section {
+  background-color: #302f2f; /* Dark background color for sections in light mode */
+}
+
+/* Light mode input group - Styles for input group in light mode */
+.bubble:not(.dark-mode) .input-group input,
+.bubble:not(.dark-mode) .input-group select {
+  background-color: #3fa1f2; /* Light grey background color for input fields */
+}
+
+/* Light mode bubble button - Styles for buttons inside bubbles in light mode */
+.bubble:not(.dark-mode) .button {
+  background-color: #909396; /* Dark background color for buttons inside bubbles */
+}
+
+.bubble:not(.dark-mode) .button:hover {
+  background-color: #717880; /* Dark grey background color for buttons on hover */
+}
+
+/* Additional styling - Styles for dark mode toggle button */
+.dark-mode-toggle {
+  position: absolute; /* Positioned absolutely */
+  top: 20 px; /* 10px from the top */
+  right: 10px; /* 10px from the right */
+  padding: 10px; /* Padding inside the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 10px;
+}
