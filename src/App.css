@@ -1,15 +1,11 @@
-/* default was made before light and dark so now some dont work xd*/
+/* default was made before light and dark so now some dont work*/
 
-/* Default dark mode - Sets the background color and text color for dark mode */
-body.dark-mode {
-  background-color: #0c0c0e; /* Dark background color */
-  color: #2f3439; /* Light grey text color */
-}
+
 
 /* Container for the main bubble section - Styles for the bubble containers */
 .bubble {
-  background-color: #141416; /* Dark background color for bubbles */
-  border: 1px solid #e90808; /* Red border for bubbles */
+  background-color: #202024; /* Dark background color for bubbles */
+  border: 1px solid #d8adad; /* Red border for bubbles */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgb(151, 149, 158); /* Subtle shadow */
   padding: 20px; /* Padding inside bubbles */
@@ -18,17 +14,22 @@ body.dark-mode {
   margin: 20px auto; /* Center bubbles horizontally */
 }
 
+.bubble {
+  max-width: 750px; /* Maximum width for bubbles */
+}
+
 /* Button styles - Styles for the buttons */
 .button {
   background-color: #007bff; /* Primary blue background color */
   color: #121212; /* White text color */
   border: none; /* No border */
   border-radius: 10px; /* Slightly rounded corners */
-  padding: 4px 157.5px; /* Padding inside the button */
+  padding: 8px 16px; /* Padding inside the button */
   cursor: pointer; /* Pointer cursor on hover */
   font-size: 18px; /* Font size */
   margin-top: 10px; /* Margin above the button */
-  transition: background-color 0.5s ease; /* Smooth transition for background color change */
+  margin-right: 10px; /* Adjust spacing between buttons */
+  transition: background-color 1s ease; /* Smooth transition for background color change */
 }
 
 .button:hover {
@@ -65,13 +66,19 @@ th, td {
 
 /* Light mode - Sets background color and text color for light mode */
 body:not(.dark-mode) {
-  background-color: #808c9b; /* Light grey background color */
+  background-color: #c7c7c7; /* Light grey background color */
   color: #282828; /* Black text color */
+}
+
+/* Default dark mode - Sets the background color and text color for dark mode */
+body.dark-mode {
+  background-color: #0c0c0e; /* Dark background color */
+  color: #25292c; /* Light grey text color */
 }
 
 /* Light mode main bubble - Styles for bubbles in light mode */
 .bubble:not(.dark-mode) {
-  background-color: #a2a7ad; /* Dark background color for bubbles in light mode */
+  background-color: #e0e5ec; /* Dark background color for bubbles in light mode */
   border-color: #969292; /* Light border color for bubbles in light mode */
   transition: background-color 2.5s ease; /* Smooth transition for background color change */
   transition: border-color 2.5s ease; /* Smooth transition for background color change */
@@ -112,7 +119,50 @@ body:not(.dark-mode) {
   position: absolute; /* Positioned absolutely */
   top: 20 px; /* 10px from the top */
   right: 10px; /* 10px from the right */
-  padding: 10px; /* Padding inside the button */
+  padding: 15px; /* Padding inside the button */
   cursor: pointer; /* Pointer cursor on hover */
   border-radius: 10px;
 }
+
+/* Styles for the input fields */
+input[type="text"],
+input[type="number"] {
+  width: 100px; /* Set the width of text input boxes */
+  padding: 1px; /* Add padding inside text input boxes */
+  margin-right: 0px; /* Adjust spacing between input boxes */
+}
+
+/* button sizes for inputs */
+
+/* Styles for clickable name boxes */
+.bubble button {
+  height: 30px; /* Set the height of clickable name boxes */
+  padding: 5px 10px; /* Add padding inside clickable name boxes */
+  border: none; /* No border */
+  border-radius: 10px; /* Rounded corners */
+  margin-right: 5px; /* Adjust spacing between clickable name boxes */
+  margin-bottom: 0px; /* Adjust spacing between clickable name boxes */
+}
+
+/* Styles for toggle all button, remove name button, and remove item button */
+.button {
+  height: 60px; /* Set the height of buttons */
+  padding: 0px 20px; /* Add padding inside buttons */
+  border: none; /* No border */
+  border-radius: 10px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size */
+  margin-top: 10px; /* Margin above buttons */
+  margin-right: 0px; /* Adjust spacing between buttons */
+}
+
+/* Styles for input fields */
+input[type="text"],
+input[type="number"] {
+  padding: 8px; /* Add padding inside text input boxes */
+  border: none; /* No border */
+  border-radius: 10px; /* Rounded corners */
+  margin-right: 5px; /* Adjust spacing between input boxes */
+  margin-bottom: 5px; /* Adjust spacing between input boxes */
+}
+
