@@ -271,6 +271,7 @@ const { subtotals, taxAmount, tipAmount, totals } = calculateTotals();
         <button className="button" onClick={handleExport}>Export</button>
       </div>
       <div>
+      <h2>Extra Information</h2>
       <h3>How to Use</h3>
       <h4>This is meant for one person paying the entire tab then splitting up the order to find the total payment owed.</h4>
       <h4>By clicking a name for each item, the calculator automatically splits the bill per person including tax and tip (if applicable). (Tax and tip are proportionally calculated.)</h4>
