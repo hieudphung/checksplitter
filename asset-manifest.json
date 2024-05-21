@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/travelbudgetapp/static/css/main.157b6ec8.css",
-    "main.js": "/travelbudgetapp/static/js/main.e031cf65.js",
+    "main.css": "/travelbudgetapp/static/css/main.5b118580.css",
+    "main.js": "/travelbudgetapp/static/js/main.c8f8823d.js",
     "static/js/453.419a5d54.chunk.js": "/travelbudgetapp/static/js/453.419a5d54.chunk.js",
     "index.html": "/travelbudgetapp/index.html",
-    "main.157b6ec8.css.map": "/travelbudgetapp/static/css/main.157b6ec8.css.map",
-    "main.e031cf65.js.map": "/travelbudgetapp/static/js/main.e031cf65.js.map",
+    "main.5b118580.css.map": "/travelbudgetapp/static/css/main.5b118580.css.map",
+    "main.c8f8823d.js.map": "/travelbudgetapp/static/js/main.c8f8823d.js.map",
     "453.419a5d54.chunk.js.map": "/travelbudgetapp/static/js/453.419a5d54.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.157b6ec8.css",
-    "static/js/main.e031cf65.js"
+    "static/css/main.5b118580.css",
+    "static/js/main.c8f8823d.js"
   ]
 }
