@@ -5,8 +5,7 @@ const BillSplitter = () => {
   const [items, setItems] = useState([{ name: '', price: '', selected: [], subtotal: 0 }]);
   const [tax, setTax] = useState('');
   const [tip, setTip] = useState('');
-  const nameInputRefs = useRef([]); // Added
-  const itemInputRefs = useRef([]); // Added
+  const inputRefs = useRef([]);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -19,6 +18,8 @@ const BillSplitter = () => {
       setTip(parsedData.tip);
     }
   }, []);
+
+  
 
   const handleNameChange = (index, event) => {
     const newNames = [...names];
@@ -76,19 +77,11 @@ const BillSplitter = () => {
   };
 
   const handleAddName = () => {
-    setNames(prevNames => {
-      const newNames = [...prevNames, ''];
-      return newNames;
-    });
+    setNames([...names, '']);
+    setTimeout(() => {
+      inputRefs.current[inputRefs.current.length - 1].focus();
+    }, 0);
   };
-
-  // Added useEffect for focusing last name input field
-  useEffect(() => {
-    if (names.length > 1) {
-      const lastIndex = names.length - 1;
-      nameInputRefs.current[lastIndex].focus();
-    }
-  }, [names]);
 
   const handleRemoveName = (index) => {
     const newNames = names.filter((_, i) => i !== index);
@@ -101,19 +94,11 @@ const BillSplitter = () => {
   };
 
   const handleAddItem = () => {
-    setItems(prevItems => {
-      const newItems = [...prevItems, { name: '', price: '', selected: [], subtotal: 0 }];
-      return newItems;
-    });
+    setItems([...items, { name: '', price: '', selected: [], subtotal: 0 }]);
+    setTimeout(() => {
+      inputRefs.current[inputRefs.current.length - 1].focus();
+    }, 0);
   };
-
-  // Added useEffect for focusing last item input field
-  useEffect(() => {
-    if (items.length > 1) {
-      const lastIndex = items.length - 1;
-      itemInputRefs.current[lastIndex].focus();
-    }
-  }, [items]);
 
   const handleRemoveItem = (index) => {
     const newItems = items.filter((_, i) => i !== index);
@@ -167,16 +152,18 @@ const BillSplitter = () => {
     );
 
     const taxAmount = subtotals.map(subtotal => subtotal * (parseFloat(tax) / 100 || 0));
-    const subtotalPlusTax = subtotals.map((subtotal, index) => subtotal + taxAmount[index]);
+    const subtotalPlusTax = subtotals.map((subtotal, index) => subtotal + taxAmount[index]); // Calculate subtotal + tax
 
-    const tipAmount = subtotalPlusTax.map(subtotal => subtotal * (parseFloat(tip) / 100 || 0));
+    const tipAmount = subtotalPlusTax.map(subtotal => subtotal * (parseFloat(tip) / 100 || 0)); // Tip based on subtotal + tax
 
     const totals = subtotals.map((subtotal, index) => subtotal + taxAmount[index] + tipAmount[index]);
 
     return { subtotals, taxAmount, tipAmount, totals };
   };
 
-  const { subtotals, taxAmount, tipAmount, totals } = calculateTotals();
+const { subtotals, taxAmount, tipAmount, totals } = calculateTotals();
+
+
 
   return (
     <div>
@@ -192,7 +179,7 @@ const BillSplitter = () => {
               value={name}
               onChange={e => handleNameChange(index, e)}
               onKeyPress={e => handleKeyPress(e, handleAddName)}
-              ref={el => nameInputRefs.current[index] = el} // Updated
+              ref={el => inputRefs.current[index] = el}
             />
             <button onClick={() => handleRemoveName(index)}>Remove Name</button>
           </div>
@@ -210,7 +197,6 @@ const BillSplitter = () => {
               value={item.name}
               onChange={e => handleItemChange(itemIndex, 'name', e)}
               onKeyPress={e => handleKeyPress(e, handleAddItem)}
-              ref={el => itemInputRefs.current[itemIndex] = el} // Updated
             />
             <input
               type="number"
@@ -280,8 +266,24 @@ const BillSplitter = () => {
         </tbody>
       </table>
 
-      <button onClick={handleClearAll}>Clear All</button>
-      <button onClick={handleExport}>Export</button>
+      <div>
+        <button className="button" onClick={handleClearAll}>Clear All</button>
+        <button className="button" onClick={handleExport}>Export</button>
+      </div>
+      <div>
+      <h2>Extra Information</h2>
+      <h3>How to Use</h3>
+      <h4>This is meant for one person paying the entire tab then splitting up the order to find the total payment owed.</h4>
+      <h4>By clicking a name for each item, the calculator automatically splits the bill per person including tax and tip (if applicable). (Tax and tip are proportionally calculated.)</h4>
+      <h4>If you would like to split items among certain people or everyone, simply click the names that correspond to each person and what they have ordered or click toggle all to share among everyone.</h4>
+      <h4>Green boxes are selected where as red boxes are not selected in the calculation for that item.</h4>
+      <h3>Subtotal vs Total</h3>
+      <h4>If there is no tax/tip involved, then the subtotal will be the same as the total; however if there is tax/tip included the subtotal is the total before adding the tax/tip. Then the total will be the grand amount the person is paying.</h4>
+      <h3>Export</h3>
+      <h4>When clicking export, a link will be copied to the clipboard that is able to be send to others to check calculations, to see totals, etc.</h4>
+      <h3>Dark and Light Mode</h3>
+      <h4>Clicking the icon at the top right will toggle dark/light mode.</h4>
+      </div>
     </div>
   );
 };
