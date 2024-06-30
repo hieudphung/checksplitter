@@ -1,6 +1,6 @@
 # Expense Calculator
 
-The Expense Calculator is a JavaScript application designed to help users calculate the total expense on a bill split between however many people, including tax and tip, for a list of selected items. https://hieudphung.github.io/checksplitter 
+The Expense Calculator is a JavaScript application designed to help users calculate the total expense on a bill split between however many people, including tax and tip, for a list of selected items. Direct Link: https://hieudphung.github.io/checksplitter 
 
 ## How it Works
 
