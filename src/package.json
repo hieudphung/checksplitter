@@ -1,5 +1,5 @@
 {
-  "homepage": "https://hieudphung.github.io/travelbudgetapp",
+  "homepage": "https://hieudphung.github.io/checksplitter",
   "dependencies": {
     "currency.js": "^2.0.4",
     "money": "^0.2.0",
